@@ -1,0 +1,42 @@
+import java.util.*;
+import java.util.stream.*;
+
+class Student {
+    String name;
+    int marks;
+
+    Student(String name, int marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Marks: " + marks;
+    }
+}
+
+public class StudentFilterSort {
+    public static void main(String[] args) {
+        List<Student> students = Arrays.asList(
+            new Student("Alice", 85),
+            new Student("Bob", 70),
+            new Student("Charlie", 95),
+            new Student("David", 60),
+            new Student("Eve", 80)
+        );
+
+        students.stream()
+            .filter(student -> student.getMarks() > 75)  
+            .sorted(Comparator.comparingInt(Student::getMarks).reversed())  
+            .forEach(System.out::println);  
+    }
+}
